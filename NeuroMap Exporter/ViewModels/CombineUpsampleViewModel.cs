@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Tmds.DBus.Protocol;
 using static NeuroMap_Exporter.ViewModels.CombineUpsampleViewModel;
@@ -45,12 +46,11 @@ namespace NeuroMap_Exporter.ViewModels
 
                     // Will always have only one file
 
-                    if (file[0] != null)
+                    if (file.Count > 0 && file[0] != null)
                         return file[0].TryGetLocalPath();
                 }
                 else
                 {
-
                     var file = await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
                     {
                         AllowMultiple = false,
@@ -58,7 +58,7 @@ namespace NeuroMap_Exporter.ViewModels
 
                     });
 
-                    if (file[0] != null)
+                    if (file.Count > 0 && file[0] != null)
                         return file[0].TryGetLocalPath();
                 }
             }
@@ -196,8 +196,8 @@ namespace NeuroMap_Exporter.ViewModels
                         if (filePath.Contains("_MFR.txt"))
                             sensorPaths = sensorPaths.Append(filePath).ToArray();
                     }
-                    string sensor1FilePath = matchingFiles.FirstOrDefault(f => f.EndsWith("(Sensor 1)_MFR.txt", StringComparison.OrdinalIgnoreCase));
-                    string sensor2FilePath = matchingFiles.FirstOrDefault(f => f.EndsWith("(Sensor 2)_MFR.txt", StringComparison.OrdinalIgnoreCase));
+                    /*string sensor1FilePath = matchingFiles.FirstOrDefault(f => f.EndsWith("(Sensor 1)_MFR.txt", StringComparison.OrdinalIgnoreCase));
+                    string sensor2FilePath = matchingFiles.FirstOrDefault(f => f.EndsWith("(Sensor 2)_MFR.txt", StringComparison.OrdinalIgnoreCase));*/
 
                     // If any of the file paths are null or empty, skip this iteration
                     /*if (string.IsNullOrEmpty(emgFilePath) || string.IsNullOrEmpty(sensor1FilePath) || string.IsNullOrEmpty(sensor2FilePath))

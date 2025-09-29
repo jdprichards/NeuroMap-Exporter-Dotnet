@@ -35,7 +35,7 @@ namespace NeuroMap_Exporter.ViewModels
 
                     // Will always have only one file
 
-                    if (file[0] != null)
+                    if (file.Count > 0 && file[0] != null)
                         return file[0].TryGetLocalPath();
                 }
                 else
@@ -48,7 +48,7 @@ namespace NeuroMap_Exporter.ViewModels
 
                     });
 
-                    if (file[0] != null)
+                    if (file.Count > 0 && file[0] != null)
                         return file[0].TryGetLocalPath();
                 }
             }

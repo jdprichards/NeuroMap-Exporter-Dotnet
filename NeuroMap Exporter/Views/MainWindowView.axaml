@@ -146,7 +146,6 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-
                                     <TextBlock
                                         Grid.Row="0"
                                         Grid.Column="1"
@@ -161,7 +160,7 @@
                                         FontSize="13">
                                         NeuroMap Exporter is a tool designed to help users export data from<LineBreak />
                                         NeuroMap Explorer in a user-friendly manner. The application provides<LineBreak />
-                                        various functionalities to assist with data management and export<LineBreak />
+                                        various functionalities to assist with data processing and exporting<LineBreak />
                                         processes.</TextBlock>
                                 </Grid>
 
@@ -175,21 +174,13 @@
                                         NeuroMap Exporter
                                     </Expander.Header>
 
-                                    <TextBlock FontSize="13">
-                                        Converts files exported from NeuroMap Explorer to be converted to a<LineBreak />
-                                        format that can be read into Visual3D.<LineBreak /><LineBreak />
-                                        Files exported directly from NeuroMap Explorer can be used as input.<LineBreak />
-                                        Singlular files can be converted, or entire folders can be selected for<LineBreak />
-                                        batch processing.<LineBreak /><LineBreak />
-                                        When a folder is selected, all files within the folder will be processed.<LineBreak />
-                                        This process will also remove any files that are not compatible with<LineBreak />
-                                        Visual3D (none .txt or .csv files).<LineBreak /><LineBreak />
-                                        The files will have the same name and extension as the original file.<LineBreak />
-                                        When folders are selected subsequent subfolders and files<LineBreak />
-                                        will be checked and attempted to be converted.<LineBreak /><LineBreak />
-                                        Warning: Do not include files you do not want to be converted<LineBreak />
-                                        within the folders you select, as this will result in them being<LineBreak />
-                                        attempted to be converted.</TextBlock>
+                                    <Expander.Content>
+                                        <TextBlock FontSize="13">
+                                            Converts files exported from NeuroMap Explorer to be converted to a<LineBreak />
+                                            format that can be open in Visual3D.<LineBreak /><LineBreak />
+                                            This works by simply adding the appropriate headers that are required<LineBreak />
+                                            by Visual3D to the files.</TextBlock>
+                                    </Expander.Content>
                                 </Expander>
 
                                 <Expander
@@ -201,12 +192,14 @@
                                     <Expander.Header>
                                         EMG-IMU Upsampler
                                     </Expander.Header>
-
-                                    <TextBlock FontSize="13">
-                                        Upsample EMG and IMU data to match the highest sample rate<LineBreak />
-                                        within the file and converting it to a format that can be read into Visual3D.<LineBreak />
-
-                                    </TextBlock>
+                                    <Expander.Content>
+										<TextBlock FontSize="13">
+											Upsample EMG and IMU data to match the highest sample rate<LineBreak />
+											within the file and converting it to a format that can be open in Visual3D.<LineBreak /><LineBreak />
+											This works by upsampling files to the highest sample rate within the file<LineBreak />
+											and adding the appropriate headers required by Visual3D to the files.
+										</TextBlock>
+                                    </Expander.Content>
                                 </Expander>
 
                                 <Expander
@@ -218,16 +211,50 @@
                                     <Expander.Header>
                                         Combine Upsampler
                                     </Expander.Header>
-                                    <TextBlock FontSize="13">
-                                        Combines EMG and IMU data with data from mutiple sensors<LineBreak />
-                                        while upsampling to match the highest sample rate<LineBreak />
-                                        and converting it to a format that can be read into Visual3D.</TextBlock>
+                                    <Expander.Content>
+                                        <TextBlock FontSize="13">
+                                            Combines EMG and IMU data with data from mutiple sensors while<LineBreak />
+                                            upsampling to match the highest sample rate and converting it to a<LineBreak />
+                                            format that can be open in Visual3D.<LineBreak /><LineBreak />
+                                            This works by finding files with ".csv" file extension, which are the EMG IMU files<LineBreak />
+                                            and finds corresponding "(Sensor x)_MFR" files to then upsample them to<LineBreak />
+                                            the highest sample rate and combine them, as well as adding the<LineBreak/>
+											appropriate headers required by Visual3D to the files.
+										</TextBlock>
+                                    </Expander.Content>
                                 </Expander>
 
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="10" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        FontSize="13"
+                                        IsVisible="{Binding MainWindowModel.HelpVisible}">
+                                        Files exported directly from NeuroMap Explorer can be used as an input<LineBreak />
+                                        Singular files can be converted (NeuroMap Exporter and EMG IMU Upsampler)<LineBreak />
+                                        or entire folders and folder structures can be selected for batch processing.<LineBreak /><LineBreak />
+                                        The files will have the same name and extension as the original file.<LineBreak />
+                                        When folders are selected subsequent subfolders and files<LineBreak />
+                                        will be checked and attempted to be converted.<LineBreak /><LineBreak />
+                                        All resulting files should be able to be opened and worked with in Visual3D<LineBreak />
+                                        with each data column having the same sample rate.<LineBreak /><LineBreak />
+                                        Warning: Do not include files you do not want to be converted within the<LineBreak />
+                                        folders you select, as this will result in them being<LineBreak />
+                                        attempted to be converted.</TextBlock>
+                                </Grid>
                             </StackPanel>
-
                         </ScrollViewer>
-
                     </Grid>
                 </SplitView.Pane>
 
@@ -235,7 +262,6 @@
                 <TransitioningContentControl Content="{Binding CurrentPage}" />
 
             </SplitView>
-
         </Border>
     </DockPanel>
 </Window>

@@ -23,7 +23,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontWeight="DemiBold"
-            Text="NeuroMap Exporter" />
+            Text="EMG IMU Upsampler" />
 
         <DockPanel Grid.Row="1">
             <Grid
