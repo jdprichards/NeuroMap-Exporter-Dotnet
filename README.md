@@ -78,7 +78,7 @@ I have included executables for Windows, Linux and macOS for immediate download 
 ### Running the Application
 
 ```bash
-git clone https://github.com/jdprichards/neuromap-exporter.git
+git clone https://github.com/jdprichards/neuromap-exporter-dotnet.git
 cd neuromap-exporter
 dotnet build
 dotnet run
