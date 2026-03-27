@@ -23,7 +23,7 @@ NeuroMap Exporter automates this process by:
 ## ✨ Key Features
 
 - ⚡ **Automated Data Conversion**  
-  Converts NeuroMap Explorer data into Visual3D-compatible formats
+  Converts NeuroMap Explorer data into Visual3D-compatible .txt files
 
 - 📊 **Multi-Sensor Data Alignment**  
   Synchronises datasets collected at different sampling rates
